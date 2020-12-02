@@ -1,12 +1,12 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 
 namespace AdventOfCode2020
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            await new CalenderController().OpenCalender();
         }
     }
 }
