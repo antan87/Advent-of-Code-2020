@@ -19,28 +19,28 @@ namespace AdventOfCode2020.Calender.Day1
             return new List<IResultTask> { result, result2 };
         }
 
-        private Task<StringResultTask> GetFirstTask()
+        private async Task<StringResultTask> GetFirstTask()
         {
             string filePath = @"AdventOfCode2020.Calender.Day1.Input.txt";
-            int[] numbers = DataHelper.GetIntTestData(Environment.NewLine, filePath);
+            int[] numbers = await DataHelper.GetInput(Environment.NewLine, filePath, Parsers.Parsers.Int32Parser);
 
             var number = Operation(numbers, 2020, 2);
 
             var result = new StringResultTask("Part One", $"Answer: {number}");
 
-            return Task.FromResult(result);
+            return result;
         }
 
-        private Task<StringResultTask> GetSecondTask()
+        private async Task<StringResultTask> GetSecondTask()
         {
             string filePath = @"AdventOfCode2020.Calender.Day1.Input.txt";
-            int[] numbers = DataHelper.GetIntTestData(Environment.NewLine, filePath);
+            int[] numbers = await DataHelper.GetInput(Environment.NewLine, filePath, Parsers.Parsers.Int32Parser);
 
             var number = Operation(numbers, 2020, 3);
 
             var result = new StringResultTask("Part Two", $"Answer: {number}");
 
-            return Task.FromResult(result);
+            return result;
         }
 
         public static int Operation(int[] elements, int sumNumber, int iterations)
