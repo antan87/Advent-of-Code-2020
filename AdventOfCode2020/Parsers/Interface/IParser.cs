@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2020.Parsers.Interface
 {
-    internal interface IParser<T>
+    public interface IParser<T>
     {
         T Parse(string value);
     }

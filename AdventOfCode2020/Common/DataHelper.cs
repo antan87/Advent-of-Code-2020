@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using AdventOfCode2020.Parsers.Interface;
 
 namespace AdventOfCode2020.Common
 {
     public static class DataHelper
     {
-        public static int[] GetIntTestData(string separator, string resourceNamePath)
+        public async static Task<T[]> GetInput<T>(string separator, string resourceNamePath, IParser<T> parser)
         {
             var assembly = Assembly.GetExecutingAssembly();
             using (Stream stream = assembly.GetManifestResourceStream(resourceNamePath))
             using (StreamReader reader = new StreamReader(stream))
             {
-                string result = reader.ReadToEnd();
-                return result.Split(separator).Select(number => Int32.Parse(number)).ToArray();
+                string result = await reader.ReadToEndAsync();
+                return result.Split(separator).Select(number => parser.Parse(number)).ToArray();
             }
         }
 
