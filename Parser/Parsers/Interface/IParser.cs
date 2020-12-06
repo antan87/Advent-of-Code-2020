@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2020.Parsers.Interface
+﻿namespace Parser.Parsers.Interface
 {
     public interface IParser<T>
     {

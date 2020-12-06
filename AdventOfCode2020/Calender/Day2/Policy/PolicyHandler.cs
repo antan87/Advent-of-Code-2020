@@ -17,7 +17,7 @@ namespace AdventOfCode2020.Calender.Day2.Policy
             {
                 case OccurrencePolicy policy when set.Condition is LetterCondition:
                     {
-                        var letterCondition = (set.Condition as LetterCondition).Letter;
+                        var letterCondition = (set.Condition as LetterCondition)!.Letter;
 
                         var occurrences = set.Password.Count(letter => letter == letterCondition);
 
@@ -26,7 +26,7 @@ namespace AdventOfCode2020.Calender.Day2.Policy
 
                 case PositionPolicy policy when set.Condition is LetterCondition:
                     {
-                        char letterCondition = (set.Condition as LetterCondition).Letter;
+                        char letterCondition = (set.Condition as LetterCondition)!.Letter;
                         var letterPositions = set.Password.Select((letter, index) => (letter, index: index )).Where(item => item.letter == letterCondition).ToList();
 
                         return letterPositions.Count(item => policy.Positions.Contains(item.index)) == 1;

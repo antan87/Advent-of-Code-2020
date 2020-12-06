@@ -1,6 +1,7 @@
-﻿using AdventOfCode2020.Parsers.Interface;
+﻿
+using Parser.Parsers.Interface;
 
-namespace AdventOfCode2020.Parsers
+namespace Parser.Parsers
 {
     public class StringParser : IParser<string>
     {

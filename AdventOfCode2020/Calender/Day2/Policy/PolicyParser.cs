@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using AdventOfCode2020.Calender.Day2.Policy.Interface;
 using AdventOfCode2020.Calender.Day2.Policy.Models;
-using AdventOfCode2020.Parsers.Interface;
+using Parser.Parsers;
+using Parser.Parsers.Interface;
 
 namespace AdventOfCode2020.Calender.Day2.Policy
 {
@@ -19,14 +20,14 @@ namespace AdventOfCode2020.Calender.Day2.Policy
             return new PolicySet(policy, condition, password);
         }
 
-        private IPolicy GetPolicy(string input)
+        private IPolicy? GetPolicy(string input)
         {
             var policyString = input.Split(' ');
 
             var numbers = policyString[0].Split("-");
 
-            var min = Parsers.Parsers.Int32Parser.Parse(numbers[0]);
-            var max = Parsers.Parsers.Int32Parser.Parse(numbers[1]);
+            var min = ParserCreator.Int32Parser.Parse(numbers[0]);
+            var max = ParserCreator.Int32Parser.Parse(numbers[1]);
 
             return CreatePolicy(min, max);
         }
@@ -38,7 +39,7 @@ namespace AdventOfCode2020.Calender.Day2.Policy
             return new LetterCondition(policyString[1].ToCharArray()[0]);
         }
 
-        private TPolicy CreatePolicy(int number, int number2)
+        private TPolicy? CreatePolicy(int number, int number2)
         {
             switch (typeof(TPolicy))
             {
@@ -49,7 +50,7 @@ namespace AdventOfCode2020.Calender.Day2.Policy
                     return (TPolicy)(IPolicy)new PositionPolicy(new List<int> { number, number2 });
 
                 default:
-                    return default(TPolicy);
+                    return default;
             }
         }
     }

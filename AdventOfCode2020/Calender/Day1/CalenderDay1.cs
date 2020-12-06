@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AdventOfCode2020.Common;
 using AdventOfCode2020.Core.Interfaces;
 using AdventOfCode2020.Core.Models;
+using Parser.Parsers;
 
 namespace AdventOfCode2020.Calender.Day1
 {
@@ -22,7 +22,7 @@ namespace AdventOfCode2020.Calender.Day1
         private async Task<StringResultTask> GetFirstTask()
         {
             string filePath = @"AdventOfCode2020.Calender.Day1.Input.txt";
-            int[] numbers = await DataHelper.GetInput(Environment.NewLine, filePath, Parsers.Parsers.Int32Parser);
+            int[] numbers = await ParseHelper.GetInput(Environment.NewLine, filePath, ParserCreator.Int32Parser);
 
             var number = Operation(numbers, 2020, 2);
 
@@ -34,7 +34,7 @@ namespace AdventOfCode2020.Calender.Day1
         private async Task<StringResultTask> GetSecondTask()
         {
             string filePath = @"AdventOfCode2020.Calender.Day1.Input.txt";
-            int[] numbers = await DataHelper.GetInput(Environment.NewLine, filePath, Parsers.Parsers.Int32Parser);
+            int[] numbers = await ParseHelper.GetInput(Environment.NewLine, filePath, ParserCreator.Int32Parser);
 
             var number = Operation(numbers, 2020, 3);
 

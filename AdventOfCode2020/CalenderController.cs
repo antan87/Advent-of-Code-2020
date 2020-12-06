@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AdventOfCode2020.Calender.Day1;
 using AdventOfCode2020.Calender.Day2;
+using AdventOfCode2020.Calender.Day3;
 using AdventOfCode2020.Core.Interfaces;
 using AdventOfCode2020.Core.Models;
 
@@ -29,7 +29,8 @@ namespace AdventOfCode2020
             return new List<ICalenderDay>
             {
                 //new CalenderDay1(),
-                new CalenderDay2()
+                //new CalenderDay2()
+                new CalenderDay3()
             };
         }
 
