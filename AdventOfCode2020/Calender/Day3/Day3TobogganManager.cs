@@ -22,11 +22,17 @@ namespace AdventOfCode2020.Calender.Day3
 
         public ICommand? GetNextCommand(IMap map, IEnumerable<IStep> steps)
         {
+            if (map.Vectors == null || map.CurrentPosition == null)
+                throw new NullReferenceException();
+
             if (this.CurrentPosition == null)
-                this.CurrentPosition = map.CurrentPosition?.Point;
+                this.CurrentPosition = new Point2D(map.CurrentPosition.Point.X, map.CurrentPosition.Point.Y);
 
             if (!map.Vectors.Any(vector => vector.Point.Y == this.CurrentPosition?.Y))
                 return null;
+
+            if (this.CurrentPosition == null || map.Vectors == null)
+                throw new NullReferenceException();
 
             foreach (var moveAction in this.Trajectory)
             {
@@ -36,7 +42,7 @@ namespace AdventOfCode2020.Calender.Day3
                     if (!map.Vectors.Any(vector => vector.Point.X == this.CurrentPosition?.X))
                         this.CurrentPosition = new Point2D(0, this.CurrentPosition.Y);
                     else if (!map.Vectors.Any(vector => vector.Point.Y == this.CurrentPosition?.Y))
-                        return new MoveCommand(new Point2D(this.CurrentPosition.X, this.CurrentPosition.Y + 1));
+                        return index == 0 ? null : new MoveCommand(new Point2D(this.CurrentPosition.X, this.CurrentPosition.Y + 1));
                 }
             }
 

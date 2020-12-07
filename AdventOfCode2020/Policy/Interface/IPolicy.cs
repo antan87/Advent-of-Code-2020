@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AdventOfCode2020.Calender.Day2.Policy.Interface
+namespace AdventOfCode2020.Calender.Policy.Interface
 {
     public interface IPolicy
     {

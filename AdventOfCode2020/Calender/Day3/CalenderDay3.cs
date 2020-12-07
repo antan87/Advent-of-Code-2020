@@ -20,7 +20,7 @@ namespace AdventOfCode2020.Calender.Day3
             var result = await GetFirstTask();
             var result2 = await GetSecondTask();
             return new List<IResultTask> {
-                result,
+                //result,
                 result2
             };
         }
@@ -81,28 +81,25 @@ namespace AdventOfCode2020.Calender.Day3
             };
 
             IEnumerable<IVector>? vectors = await ParseHelper.GetInput(filePath, new Day3TobogganParser());
-            var trajectoryCountObstacles = InitializeTrajectory(vectors, trajectory).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
+            var trajectoryCountObstacles = InitializeTrajectory(vectors.ToList(), trajectory).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
             vectors = await ParseHelper.GetInput(filePath, new Day3TobogganParser());
-            var trajectory2CountObstacles = InitializeTrajectory(vectors, trajectory2).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
+            var trajectory2CountObstacles = InitializeTrajectory(vectors.ToList(), trajectory2).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
             vectors = await ParseHelper.GetInput(filePath, new Day3TobogganParser());
-            var trajectory3CountObstacles = InitializeTrajectory(vectors, trajectory3).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
+            var trajectory3CountObstacles = InitializeTrajectory(vectors.ToList(), trajectory3).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
             vectors = await ParseHelper.GetInput(filePath, new Day3TobogganParser());
-            var trajectory4CountObstacles = InitializeTrajectory(vectors, trajectory4).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
+            var trajectory4CountObstacles = InitializeTrajectory(vectors.ToList(), trajectory4).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
             vectors = await ParseHelper.GetInput(filePath, new Day3TobogganParser());
-            var trajectory5CountObstacles = InitializeTrajectory(vectors, trajectory5).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
+            var trajectory5CountObstacles = InitializeTrajectory(vectors.ToList(), trajectory5).Count(step => step.Vector.GetType() == typeof(TreeObstacle));
 
-            var result = trajectoryCountObstacles * trajectory5CountObstacles;
-            result = result * trajectory2CountObstacles;
-            result = result * trajectory3CountObstacles;
-            result = result * trajectory4CountObstacles;
+            var result = trajectoryCountObstacles * trajectory5CountObstacles * trajectory2CountObstacles * trajectory3CountObstacles * trajectory4CountObstacles;
 
             return new StringResultTask("Part 2", $"Answer: {result}");
 
-            static List<IStep> InitializeTrajectory(IEnumerable<IVector> vectors, List<(TobogganMovmentKind movmentKind, int steps)> trajectory)
+            static List<IStep> InitializeTrajectory(List<IVector> vectors, List<(TobogganMovmentKind movmentKind, int steps)> trajectory)
             {
                 var startingY = vectors.Select(point => point.Point).Max(point => point.Y);
                 var startingVector = vectors.First(vector => vector.Point.X == 0 && vector.Point.Y == startingY);
-                TrajectoryConfiguration configuration = new TrajectoryConfiguration(new Day3TobogganManager(trajectory), vectors.ToList(), startingVector);
+                TrajectoryConfiguration configuration = new TrajectoryConfiguration(new Day3TobogganManager(trajectory), vectors, startingVector);
                 var controller = new MapController(configuration);
 
                 var steps = controller.Init();

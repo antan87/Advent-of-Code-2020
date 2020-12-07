@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using AdventOfCode2020.Calender.Day2.Policy.Interface;
-using AdventOfCode2020.Calender.Day2.Policy.Models;
+using AdventOfCode2020.Calender.Policy.Interface;
+using AdventOfCode2020.Calender.Policy.Models;
 
-namespace AdventOfCode2020.Calender.Day2.Policy
+namespace AdventOfCode2020.Calender.Policy
 {
     public static class PolicyHandler
     {
