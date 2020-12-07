@@ -11,6 +11,7 @@
     <None Remove="Calender\Day2\Input.txt" />
     <None Remove="Calender\Day3\Input.txt" />
     <None Remove="Calender\Day4\Input.txt" />
+    <None Remove="Calender\Day5\Input.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Calender\Day4\Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calender\Day5\Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
