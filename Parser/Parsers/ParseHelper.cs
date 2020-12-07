@@ -10,23 +10,34 @@ namespace Parser.Parsers
 {
     public static class ParseHelper
     {
-        public async static Task<T[]> GetInput<T>(string separator, string resourceNamePath, IParser<T> parser)
+        public async static Task<T[]> GetInput<T>(string separator, string resourceNamePath, IParser<T> parser, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
         {
             string assembly = resourceNamePath.Split('.')[0];
             using (Stream? stream = Assembly.LoadFrom(assembly).GetManifestResourceStream(resourceNamePath))
             using (StreamReader reader = new StreamReader(stream!))
             {
                 string result = await reader.ReadToEndAsync();
-                return Parse(separator, parser, result);
+                return Parse(new string[] { separator }, parser, result, stringSplitOptions);
             }
         }
 
-        private static T[] Parse<T>(string separator, IParser<T> parser, string? input)
+        public async static Task<T[]> GetInput<T>(string[]seperators , string resourceNamePath, IParser<T> parser, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
+        {
+            string assembly = resourceNamePath.Split('.')[0];
+            using (Stream? stream = Assembly.LoadFrom(assembly).GetManifestResourceStream(resourceNamePath))
+            using (StreamReader reader = new StreamReader(stream!))
+            {
+                string result = await reader.ReadToEndAsync();
+                return Parse(seperators, parser, result, stringSplitOptions);
+            }
+        }
+
+        private static T[] Parse<T>(string[] separators, IParser<T> parser, string? input, StringSplitOptions stringSplitOptions = StringSplitOptions.None)
         {
             if (string.IsNullOrWhiteSpace(input))
                 return new T[0];
 
-            return input.Split(separator).Select(number => parser.Parse(number)).ToArray();
+            return input.Split(separators, stringSplitOptions).Select(number => parser.Parse(number)).ToArray();
         }
 
         private static T[] Parse<T>(IParser2D<T> parser, string? input, int y)

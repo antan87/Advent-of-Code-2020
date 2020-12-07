@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AdventOfCode2020.Calender.Day2.Policy;
-using AdventOfCode2020.Calender.Day2.Policy.Models;
+using AdventOfCode2020.Calender.Policy;
+using AdventOfCode2020.Calender.Policy.Models;
 using AdventOfCode2020.Core.Interfaces;
 using AdventOfCode2020.Core.Models;
 using Parser.Parsers;

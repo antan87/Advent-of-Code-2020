@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2020.Calender.Day2.Policy
+﻿namespace AdventOfCode2020.Calender.Policy
 {
     public static class PolicyLoader
     {
