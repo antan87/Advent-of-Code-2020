@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AdventOfCode2020.Calender.Day5;
+using AdventOfCode2020.Calender.Day6;
 using AdventOfCode2020.Core.Interfaces;
 using AdventOfCode2020.Core.Models;
 
@@ -31,7 +31,8 @@ namespace AdventOfCode2020
                 //new CalenderDay2(),
                 //new CalenderDay3(),
                 //new CalenderDay4(),
-                new CalenderDay5(),
+                //new CalenderDay5(),
+                new CalenderDay6(),
             };
         }
 
